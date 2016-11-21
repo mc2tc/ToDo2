@@ -237,6 +237,7 @@
                                 <state key="normal" title="Update"/>
                                 <connections>
                                     <action selector="editButton:" destination="asq-zd-gms" eventType="touchUpInside" id="hRC-Bx-Xk9"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="MIr-3M-hx2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,6 +278,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6wt-3a-2Q9"/>
+        <segue reference="MIr-3M-hx2"/>
     </inferredMetricsTieBreakers>
 </document>
