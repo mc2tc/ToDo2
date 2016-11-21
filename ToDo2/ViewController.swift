@@ -207,16 +207,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "editing") {
-        let editVC: EditViewController = segue.destination as! EditViewController
+        if (segue.identifier == "editing" || segue.identifier == "editing1") {
+           
+            if (segue.identifier == "editing") {
+            let editVC: EditViewController = segue.destination as! EditViewController
             let row = (sender as! NSIndexPath).row
             editVC.todoToEdit = expiringSoon[row]
-            
-            
             expiringSoon.remove(at: row)
+            } else if (segue.identifier == "editing1") {
+                
+                let editVC: EditViewController = segue.destination as! EditViewController
+                let row = (sender as! NSIndexPath).row
+                editVC.todoToEdit = notExpiringSoon[row]
+                notExpiringSoon.remove(at: row)
+                
+            }
         
+            
         }
     }
+    
     
 
 }

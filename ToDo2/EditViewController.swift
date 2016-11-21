@@ -24,9 +24,37 @@ class EditViewController: UIViewController {
         todoToEdit.4 = editReward.text!
         todoToEdit.5 = editEmotion.text!
         todoToEdit.6 = editExpires.text!
+        //-----------
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        _ = NSCalendar.current
+        
+        let dateNow = Date()
+        var startDate = dateFormatter.date(from: "01/02/17")
+        
+        startDate = dateFormatter.date(from: todoToEdit.6)
+        let days: Int = daysBetween(start: dateNow, end: startDate!)
+        if  days <= 3 {
+            todoToEdit.9 = 1
+        } else {
+            todoToEdit.9 = 0
+        }
+        
+        
+        
+        
+        //------------
+        
+        if todoToEdit.9 == 1 {
         
         expiringSoon.append(todoToEdit)
         print(expiringSoon)
+        } else {
+            notExpiringSoon.append(todoToEdit)
+            print(notExpiringSoon)
+            
+        }
         
     }
     
@@ -51,6 +79,11 @@ class EditViewController: UIViewController {
         editExpires.text! = todoToEdit.6
         
     }
+    
+    func daysBetween(start: Date, end: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: start, to: end).day!
+    }
+
 
 
 

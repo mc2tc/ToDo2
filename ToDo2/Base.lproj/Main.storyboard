@@ -51,6 +51,7 @@
                     <connections>
                         <outlet property="tableView" destination="sIw-Y2-nVa" id="4Ri-c1-acn"/>
                         <segue destination="asq-zd-gms" kind="show" identifier="editing" id="xcV-kJ-IKd"/>
+                        <segue destination="asq-zd-gms" kind="show" identifier="editing1" id="Up9-bE-Fl6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -278,6 +279,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Up9-bE-Fl6"/>
         <segue reference="MIr-3M-hx2"/>
     </inferredMetricsTieBreakers>
 </document>
