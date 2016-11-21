@@ -7,12 +7,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     
-    var todo1 = ("Schedule", "Something", "Personal", "Low", "Low", "Low", "11/16/17", 1, 1, 1, 1, 1, 1, 1)
+    var todo1 = ("", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         if todo1.9 == 1 {
@@ -178,7 +179,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return "Other"
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let c = expiringSoon[indexPath.row]
+            //expiringSoon.remove(at: indexPath.row)
+            self.performSegue(withIdentifier: "editing", sender: indexPath)
+            
+        } else {
+            let d = notExpiringSoon[indexPath.row]
 
+            //notExpiringSoon.remove(at: indexPath.row)
+            self.performSegue(withIdentifier: "editing", sender: indexPath)
+
+        }
+        
+    }
+    
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+//        if (segue.identifier == "editing") {
+//            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! EditViewController
+//            let row = (sender as! NSIndexPath).row; //we know that sender is an NSIndexPath here.
+//            let patientQuestionnaire = patientQuestionnaires[row] as! PatientQuestionnaire
+//            controller.selectedQuestionnaire = patientQuestionnaire
+//        }
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "editing") {
+        let editVC: EditViewController = segue.destination as! EditViewController
+            let row = (sender as! NSIndexPath).row
+            editVC.todoToEdit = expiringSoon[row]
+            
+            
+            expiringSoon.remove(at: row)
+        
+        }
+    }
+    
 
 }
 

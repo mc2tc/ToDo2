@@ -17,7 +17,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var picker5 = UIPickerView()
     var datePicker = UIDatePicker()
     
-    var todo  = ("dummy", "dummy", "dummy", "dummy", "dummy", "dummy", "01/01/17", 1, 1, 1,1,1,1,1)
+    var todo  = ("", "", "", "", "", "", "", 1, 1, 1,1,1,1,1)
     
     
     @IBAction func buildTodo(_ sender: UIButton) {
@@ -43,9 +43,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         var startDate = dateFormatter.date(from: "01/02/17")
         
         startDate = dateFormatter.date(from: todo.6)
-        print(todo.6)
         let days: Int = daysBetween(start: dateNow, end: startDate!)
-        print("days is \(days)")
         if  days <= 3 {
             todo.9 = 1
         } else {
@@ -143,9 +141,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tableVC: ViewController = segue.destination as! ViewController
         
-        //tableVC.todos1 = ListOfTodos.todos
         tableVC.todo1 = todo
-        print(todo)
     }
 
     
