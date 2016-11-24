@@ -22,100 +22,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             notExpiringSoon.append(todo1)
         }
         
-        for i in 0...expiringSoon.count-1{
-            for (j,k) in PickerData.verbDict {
-                if j == expiringSoon[i].0 {
-                    expiringSoon[i].7 = k
-                }
-            }
-        }
+        expiringSoon = coke(A: expiringSoon)
         
-        for i in 0...expiringSoon.count-1{
-            for (j,k) in PickerData.emotionDict {
-                if j == expiringSoon[i].5 {
-                    expiringSoon[i].8 = k
-                }
-            }
-        }
-        
-        for i in 0...expiringSoon.count-1{
-            for (j,k) in PickerData.effortDict {
-                if j == expiringSoon[i].3 {
-                    expiringSoon[i].10 = k
-                }
-            }
-        }
-        
-        for i in 0...expiringSoon.count-1{
-            for (j,k) in PickerData.rewardDict {
-                if j == expiringSoon[i].4 {
-                    expiringSoon[i].11 = k
-                }
-            }
-        }
-        
-        for i in 0...expiringSoon.count-1{
-            for (j,k) in PickerData.rewardDict {
-                if j == expiringSoon[i].2 {
-                    expiringSoon[i].12 = k
-                }
-            }
-        }
-        
-        for i in 0...expiringSoon.count-1{
-            expiringSoon[i].13 = expiringSoon[i].10 * expiringSoon[i].11 * expiringSoon[i].12
-        }
-        
-        expiringSoon = expiringSoon.sorted { ($1.7,$1.8,$1.13) > ($0.7,$0.8,$1.13) }
-        
-        
-        
-        
-        for i in 0...notExpiringSoon.count-1{
-            for (j,k) in PickerData.verbDict {
-                if j == notExpiringSoon[i].0 {
-                    notExpiringSoon[i].7 = k
-                }
-            }
-        }
-        
-        for i in 0...notExpiringSoon.count-1{
-            for (j,k) in PickerData.emotionDict {
-                if j == notExpiringSoon[i].5 {
-                    notExpiringSoon[i].8 = k
-                }
-            }
-        }
-        
-        for i in 0...notExpiringSoon.count-1{
-            for (j,k) in PickerData.effortDict {
-                if j == notExpiringSoon[i].3 {
-                    notExpiringSoon[i].10 = k
-                }
-            }
-        }
-        
-        for i in 0...notExpiringSoon.count-1{
-            for (j,k) in PickerData.rewardDict {
-                if j == notExpiringSoon[i].4 {
-                    notExpiringSoon[i].11 = k
-                }
-            }
-        }
-        
-        for i in 0...notExpiringSoon.count-1{
-            for (j,k) in PickerData.rewardDict {
-                if j == notExpiringSoon[i].2 {
-                    notExpiringSoon[i].12 = k
-                }
-            }
-        }
-        
-        for i in 0...notExpiringSoon.count-1{
-            notExpiringSoon[i].13 = notExpiringSoon[i].10 * notExpiringSoon[i].11 * notExpiringSoon[i].12
-        }
-        
-        notExpiringSoon = notExpiringSoon.sorted { ($1.7,$1.8,$1.13) > ($0.7,$0.8,$1.13) }
+        notExpiringSoon = coke(A: notExpiringSoon)
         
     }
     
@@ -190,40 +99,80 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let d = notExpiringSoon[indexPath.row]
 
             //notExpiringSoon.remove(at: indexPath.row)
-            self.performSegue(withIdentifier: "editing", sender: indexPath)
+            self.performSegue(withIdentifier: "editing1", sender: indexPath)
 
         }
         
     }
     
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-//        if (segue.identifier == "editing") {
-//            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! EditViewController
-//            let row = (sender as! NSIndexPath).row; //we know that sender is an NSIndexPath here.
-//            let patientQuestionnaire = patientQuestionnaires[row] as! PatientQuestionnaire
-//            controller.selectedQuestionnaire = patientQuestionnaire
-//        }
-//    }
+    //---
+    func coke(A: [(String,String,String,String,String,String,String,Int,Int,Int,Int,Int,Int,Int)]) -> [(String,String,String,String,String,String,String,Int,Int,Int,Int,Int,Int,Int)] {
+        
+        var B = A
+        
+        for i in 0...B.count-1{
+            for (j,k) in PickerData.verbDict {
+                if j == B[i].0 {
+                    B[i].7 = k
+                }
+            }
+        }
+        
+        for i in 0...B.count-1{
+            for (j,k) in PickerData.emotionDict {
+                if j == B[i].5 {
+                    B[i].8 = k
+                }
+            }
+        }
+        
+        for i in 0...B.count-1{
+            for (j,k) in PickerData.effortDict {
+                if j == B[i].3 {
+                    B[i].10 = k
+                }
+            }
+        }
+        
+        for i in 0...B.count-1{
+            for (j,k) in PickerData.rewardDict {
+                if j == B[i].4 {
+                    B[i].11 = k
+                }
+            }
+        }
+        
+        for i in 0...B.count-1{
+            for (j,k) in PickerData.rewardDict {
+                if j == B[i].2 {
+                    B[i].12 = k
+                }
+            }
+        }
+        
+        for i in 0...B.count-1{
+            B[i].13 = B[i].10 * B[i].11 * B[i].12
+        }
+        
+        return B.sorted { ($1.7,$1.8,$1.13) > ($0.7,$0.8,$1.13) }
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "editing" || segue.identifier == "editing1") {
            
             if (segue.identifier == "editing") {
-            let editVC: EditViewController = segue.destination as! EditViewController
-            let row = (sender as! NSIndexPath).row
-            editVC.todoToEdit = expiringSoon[row]
-            expiringSoon.remove(at: row)
+                let editVC: EditViewController = segue.destination as! EditViewController
+                let row = (sender as! NSIndexPath).row
+                editVC.todoToEdit = expiringSoon[row]
+                expiringSoon.remove(at: row)
             } else if (segue.identifier == "editing1") {
-                
                 let editVC: EditViewController = segue.destination as! EditViewController
                 let row = (sender as! NSIndexPath).row
                 editVC.todoToEdit = notExpiringSoon[row]
                 notExpiringSoon.remove(at: row)
                 
             }
-        
-            
         }
     }
     
