@@ -117,7 +117,7 @@
                                 <state key="normal" title="Add Todo"/>
                                 <connections>
                                     <action selector="buildTodo:" destination="tid-ct-RIO" eventType="touchUpInside" id="mq8-Cc-hyN"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="6wt-3a-2Q9"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="input" id="6wt-3a-2Q9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -320,7 +320,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Up9-bE-Fl6"/>
-        <segue reference="MIr-3M-hx2"/>
+        <segue reference="6wt-3a-2Q9"/>
+        <segue reference="xcV-kJ-IKd"/>
     </inferredMetricsTieBreakers>
 </document>

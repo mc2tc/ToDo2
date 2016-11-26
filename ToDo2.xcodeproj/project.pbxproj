@@ -15,6 +15,7 @@
 		C17B42AE1DE2290D00AD1ADB /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B42AD1DE2290D00AD1ADB /* InputViewController.swift */; };
 		C17B42B01DE230F900AD1ADB /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B42AF1DE230F900AD1ADB /* PickerData.swift */; };
 		C17B42B41DE2598500AD1ADB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B42B31DE2598500AD1ADB /* EditViewController.swift */; };
+		C1BA994F1DE89464000EB33B /* SortAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BA994E1DE89464000EB33B /* SortAlgorithm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C17B42AD1DE2290D00AD1ADB /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		C17B42AF1DE230F900AD1ADB /* PickerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
 		C17B42B31DE2598500AD1ADB /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		C1BA994E1DE89464000EB33B /* SortAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortAlgorithm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				C17B429B1DE2246800AD1ADB /* AppDelegate.swift */,
 				C17B42AF1DE230F900AD1ADB /* PickerData.swift */,
+				C1BA994E1DE89464000EB33B /* SortAlgorithm.swift */,
 				C17B429D1DE2246800AD1ADB /* ViewController.swift */,
 				C17B42AD1DE2290D00AD1ADB /* InputViewController.swift */,
 				C17B42B31DE2598500AD1ADB /* EditViewController.swift */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C17B42B41DE2598500AD1ADB /* EditViewController.swift in Sources */,
+				C1BA994F1DE89464000EB33B /* SortAlgorithm.swift in Sources */,
 				C17B42AE1DE2290D00AD1ADB /* InputViewController.swift in Sources */,
 				C17B429E1DE2246800AD1ADB /* ViewController.swift in Sources */,
 				C17B429C1DE2246800AD1ADB /* AppDelegate.swift in Sources */,
@@ -314,6 +318,7 @@
 				C17B42AC1DE2246800AD1ADB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

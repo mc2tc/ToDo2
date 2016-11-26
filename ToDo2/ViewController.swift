@@ -1,14 +1,14 @@
 import UIKit
 
-var expiringSoon = [("", "", "", "", "", "", "",1,1,1,1,1,1,1)]
-var notExpiringSoon = [("", "", "", "", "", "", "",1,1,1,1,1,1,1)]
+var expiringSoon = [("c", "", "", "", "", "", "",1,1,1,1,1,1,1)]
+var notExpiringSoon = [("c", "", "", "", "", "", "",1,1,1,1,1,1,1)]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+   
+    var todo1 = ("c", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1) // this needs an init only on calculated fields...
     
-    var todo1 = ("", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1)
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -16,26 +16,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        //print(todo1)
+        
         if todo1.9 == 1 {
             expiringSoon.append(todo1)
         } else {
             notExpiringSoon.append(todo1)
         }
+                
+        let algorithm1 = SortAlgorithm()
+        if expiringSoon.count > 0 {
+        expiringSoon = algorithm1.coke(A: expiringSoon)
+            expiringSoon = expiringSoon.filter({$0.0 != "c"})
+        }
         
-        expiringSoon = coke(A: expiringSoon)
-        
-        notExpiringSoon = coke(A: notExpiringSoon)
-        
+        let algorithm2 = SortAlgorithm()
+        if notExpiringSoon.count > 0 {
+        notExpiringSoon = algorithm2.coke(A: notExpiringSoon)
+            notExpiringSoon = notExpiringSoon.filter({$0.0 != "c"})
+        }
+
     }
+    
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.tableView.setEditing(editing, animated: animated)
+    
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -43,7 +58,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             return notExpiringSoon.count
         }
+    
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
@@ -60,13 +77,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
         
     }
     
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             if indexPath.section == 0 {
                 expiringSoon.remove(at: indexPath.row)
@@ -78,8 +96,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    
     }
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section==0 {
@@ -89,78 +110,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let c = expiringSoon[indexPath.row]
-            //expiringSoon.remove(at: indexPath.row)
+            _ = expiringSoon[indexPath.row]
             self.performSegue(withIdentifier: "editing", sender: indexPath)
-            
         } else {
-            let d = notExpiringSoon[indexPath.row]
-
-            //notExpiringSoon.remove(at: indexPath.row)
+            _ = notExpiringSoon[indexPath.row]
             self.performSegue(withIdentifier: "editing1", sender: indexPath)
-
         }
         
     }
     
-    //---
-    func coke(A: [(String,String,String,String,String,String,String,Int,Int,Int,Int,Int,Int,Int)]) -> [(String,String,String,String,String,String,String,Int,Int,Int,Int,Int,Int,Int)] {
-        
-        var B = A
-        
-        for i in 0...B.count-1{
-            for (j,k) in PickerData.verbDict {
-                if j == B[i].0 {
-                    B[i].7 = k
-                }
-            }
-        }
-        
-        for i in 0...B.count-1{
-            for (j,k) in PickerData.emotionDict {
-                if j == B[i].5 {
-                    B[i].8 = k
-                }
-            }
-        }
-        
-        for i in 0...B.count-1{
-            for (j,k) in PickerData.effortDict {
-                if j == B[i].3 {
-                    B[i].10 = k
-                }
-            }
-        }
-        
-        for i in 0...B.count-1{
-            for (j,k) in PickerData.rewardDict {
-                if j == B[i].4 {
-                    B[i].11 = k
-                }
-            }
-        }
-        
-        for i in 0...B.count-1{
-            for (j,k) in PickerData.rewardDict {
-                if j == B[i].2 {
-                    B[i].12 = k
-                }
-            }
-        }
-        
-        for i in 0...B.count-1{
-            B[i].13 = B[i].10 * B[i].11 * B[i].12
-        }
-        
-        return B.sorted { ($1.7,$1.8,$1.13) > ($0.7,$0.8,$1.13) }
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "editing" || segue.identifier == "editing1") {
-           
             if (segue.identifier == "editing") {
                 let editVC: EditViewController = segue.destination as! EditViewController
                 let row = (sender as! NSIndexPath).row
@@ -175,7 +139,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    
     
 
 }

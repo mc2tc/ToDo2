@@ -17,8 +17,8 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var picker5 = UIPickerView()
     var datePicker = UIDatePicker()
     
-    var todo  = ("", "", "", "", "", "", "", 1, 1, 1,1,1,1,1)
-    
+    var todo  = ("d", "", "", "", "", "", "", 1, 1, 1,1,1,1,1)
+
     
     @IBAction func buildTodo(_ sender: UIButton) {
         
@@ -32,8 +32,6 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         todo.7 = 1
         todo.8 = 1
         todo.9 = 1
-        
-//        todoLabel.text = verbText.text! + " " + taskText.text! + " in category " + categoryText.text! + " requiring " + effortText.text! + " effort and with " + rewardText.text! + " reward " + emotionText.text! + expiresText.text!
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy"
@@ -51,7 +49,6 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         
     }
-    
     
     
     override func viewDidLoad() {
@@ -76,11 +73,11 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         taskText.layer.borderColor = UIColor.lightGray.cgColor
         taskText.layer.borderWidth = 0.5
 
-        
     }
     
     func daysBetween(start: Date, end: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: start, to: end).day!
+    
     }
     
     
@@ -88,11 +85,15 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         expiresText.text = formatter.string(from: sender.date)
+    
     }
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
+    
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if verbText.isFirstResponder {
@@ -107,7 +108,9 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             return PickerData.emotion.count
         }
         return 1
+    
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if verbText.isFirstResponder {
@@ -121,7 +124,9 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         } else if emotionText.isFirstResponder {
             emotionText.text = PickerData.emotion[row]
         }
+    
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if verbText.isFirstResponder {
@@ -136,12 +141,18 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             return PickerData.emotion[row]
         }
         return ""
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "input") {
+        
         let tableVC: ViewController = segue.destination as! ViewController
         
         tableVC.todo1 = todo
+        }
+    
     }
 
     

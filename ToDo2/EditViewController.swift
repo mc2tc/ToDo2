@@ -2,7 +2,7 @@ import UIKit
 
 class EditViewController: UIViewController {
 
-    var todoToEdit = ("", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1)
+    var todoToEdit = ("e", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1)
     
     
     @IBOutlet weak var forEditText: UITextField!
@@ -42,13 +42,14 @@ class EditViewController: UIViewController {
         
         if todoToEdit.9 == 1 {
             expiringSoon.append(todoToEdit)
-            let vc = ViewController()
-            expiringSoon = vc.coke(A: expiringSoon)
+            let algorithm = SortAlgorithm()
+            expiringSoon = algorithm.coke(A: expiringSoon)
         } else {
             notExpiringSoon.append(todoToEdit)
-            let vc = ViewController()
-            notExpiringSoon = vc.coke(A: notExpiringSoon)
+            let algorithm = SortAlgorithm()
+            notExpiringSoon = algorithm.coke(A: notExpiringSoon)
         }
+
     
     }
     
