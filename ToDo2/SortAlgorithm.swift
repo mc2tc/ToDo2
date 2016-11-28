@@ -50,7 +50,7 @@ class SortAlgorithm {
         B[i].13 = B[i].10 * B[i].11 * B[i].12
     }
     
-    return B.sorted { ($1.7,$1.8,$1.13) > ($0.7,$0.8,$1.13) }
+    return B.sorted { ($1.7,$1.8,$1.13) > ($0.7,$0.8,$0.13) }
     
     }
 }

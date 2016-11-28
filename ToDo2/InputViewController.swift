@@ -2,6 +2,8 @@ import UIKit
 
 class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
 
+    var todo  = ("d", "", "", "", "", "", "", 1, 1, 1,1,1,1,1)
+    
     @IBOutlet weak var verbText: UITextField!
     @IBOutlet weak var taskText: UITextField!
     @IBOutlet weak var categoryText: UITextField!
@@ -17,11 +19,10 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var picker5 = UIPickerView()
     var datePicker = UIDatePicker()
     
-    var todo  = ("d", "", "", "", "", "", "", 1, 1, 1,1,1,1,1)
+    
 
     
     @IBAction func buildTodo(_ sender: UIButton) {
-        
         todo.0 = verbText.text!
         todo.1 = taskText.text!
         todo.2 = categoryText.text!

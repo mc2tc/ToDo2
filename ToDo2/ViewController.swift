@@ -1,13 +1,13 @@
 import UIKit
 
-var expiringSoon = [("c", "", "", "", "", "", "",1,1,1,1,1,1,1)]
-var notExpiringSoon = [("c", "", "", "", "", "", "",1,1,1,1,1,1,1)]
+var expiringSoon = [("initialize", "", "", "", "", "", "",1,1,1,1,1,1,1)]
+var notExpiringSoon = [("initialize", "", "", "", "", "", "",1,1,1,1,1,1,1)]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
    
-    var todo1 = ("c", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1) // this needs an init only on calculated fields...
+    var todo1 = ("initialize", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,8 +15,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        //print(todo1)
         
         if todo1.9 == 1 {
             expiringSoon.append(todo1)
@@ -27,13 +25,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let algorithm1 = SortAlgorithm()
         if expiringSoon.count > 0 {
         expiringSoon = algorithm1.coke(A: expiringSoon)
-            expiringSoon = expiringSoon.filter({$0.0 != "c"})
+            expiringSoon = expiringSoon.filter({$0.0 != "initialize"})
         }
         
         let algorithm2 = SortAlgorithm()
         if notExpiringSoon.count > 0 {
         notExpiringSoon = algorithm2.coke(A: notExpiringSoon)
-            notExpiringSoon = notExpiringSoon.filter({$0.0 != "c"})
+            notExpiringSoon = notExpiringSoon.filter({$0.0 != "initialize"})
         }
 
     }
