@@ -15,6 +15,10 @@
 		C17B42AE1DE2290D00AD1ADB /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B42AD1DE2290D00AD1ADB /* InputViewController.swift */; };
 		C17B42B01DE230F900AD1ADB /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B42AF1DE230F900AD1ADB /* PickerData.swift */; };
 		C17B42B41DE2598500AD1ADB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B42B31DE2598500AD1ADB /* EditViewController.swift */; };
+		C19B02E71DEC9F9600DFF4D3 /* myTodoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C19B02E51DEC9F9600DFF4D3 /* myTodoModel.xcdatamodeld */; };
+		C19B02EA1DECA0CC00DFF4D3 /* SavedToDo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B02E81DECA0CC00DFF4D3 /* SavedToDo+CoreDataClass.swift */; };
+		C19B02EB1DECA0CC00DFF4D3 /* SavedToDo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B02E91DECA0CC00DFF4D3 /* SavedToDo+CoreDataProperties.swift */; };
+		C19B02ED1DECA12200DFF4D3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B02EC1DECA12200DFF4D3 /* DataController.swift */; };
 		C1BA994F1DE89464000EB33B /* SortAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BA994E1DE89464000EB33B /* SortAlgorithm.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +33,10 @@
 		C17B42AD1DE2290D00AD1ADB /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		C17B42AF1DE230F900AD1ADB /* PickerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
 		C17B42B31DE2598500AD1ADB /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		C19B02E61DEC9F9600DFF4D3 /* myTodoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myTodoModel.xcdatamodel; sourceTree = "<group>"; };
+		C19B02E81DECA0CC00DFF4D3 /* SavedToDo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SavedToDo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C19B02E91DECA0CC00DFF4D3 /* SavedToDo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SavedToDo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C19B02EC1DECA12200DFF4D3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		C1BA994E1DE89464000EB33B /* SortAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortAlgorithm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +54,9 @@
 		C17B428F1DE2246700AD1ADB = {
 			isa = PBXGroup;
 			children = (
+				C19B02E81DECA0CC00DFF4D3 /* SavedToDo+CoreDataClass.swift */,
+				C19B02E91DECA0CC00DFF4D3 /* SavedToDo+CoreDataProperties.swift */,
+				C19B02EC1DECA12200DFF4D3 /* DataController.swift */,
 				C17B429A1DE2246800AD1ADB /* ToDo2 */,
 				C17B42991DE2246800AD1ADB /* Products */,
 			);
@@ -67,6 +78,7 @@
 				C1BA994E1DE89464000EB33B /* SortAlgorithm.swift */,
 				C17B429D1DE2246800AD1ADB /* ViewController.swift */,
 				C17B42AD1DE2290D00AD1ADB /* InputViewController.swift */,
+				C19B02E51DEC9F9600DFF4D3 /* myTodoModel.xcdatamodeld */,
 				C17B42B31DE2598500AD1ADB /* EditViewController.swift */,
 				C17B429F1DE2246800AD1ADB /* Main.storyboard */,
 				C17B42A21DE2246800AD1ADB /* Assets.xcassets */,
@@ -154,6 +166,10 @@
 				C17B42AE1DE2290D00AD1ADB /* InputViewController.swift in Sources */,
 				C17B429E1DE2246800AD1ADB /* ViewController.swift in Sources */,
 				C17B429C1DE2246800AD1ADB /* AppDelegate.swift in Sources */,
+				C19B02ED1DECA12200DFF4D3 /* DataController.swift in Sources */,
+				C19B02EA1DECA0CC00DFF4D3 /* SavedToDo+CoreDataClass.swift in Sources */,
+				C19B02E71DEC9F9600DFF4D3 /* myTodoModel.xcdatamodeld in Sources */,
+				C19B02EB1DECA0CC00DFF4D3 /* SavedToDo+CoreDataProperties.swift in Sources */,
 				C17B42B01DE230F900AD1ADB /* PickerData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +337,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C19B02E51DEC9F9600DFF4D3 /* myTodoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C19B02E61DEC9F9600DFF4D3 /* myTodoModel.xcdatamodel */,
+			);
+			currentVersion = C19B02E61DEC9F9600DFF4D3 /* myTodoModel.xcdatamodel */;
+			path = myTodoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C17B42901DE2246700AD1ADB /* Project object */;
 }

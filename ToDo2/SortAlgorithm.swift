@@ -39,7 +39,7 @@ class SortAlgorithm {
     }
     
     for i in 0...B.count-1{
-        for (j,k) in PickerData.rewardDict {
+        for (j,k) in PickerData.categoryDict {
             if j == B[i].2 {
                 B[i].12 = k
             }

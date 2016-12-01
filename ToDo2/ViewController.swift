@@ -1,11 +1,16 @@
 import UIKit
+import CoreData
 
 var expiringSoon = [("initialize", "", "", "", "", "", "",1,1,1,1,1,1,1)]
 var notExpiringSoon = [("initialize", "", "", "", "", "", "",1,1,1,1,1,1,1)]
+var expiringSoonAlias = [("initialize_alias", "", "", "", "", "", "",1,1,1,1,1,1,1)]
+var counter = 0
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    let moc = DataController().managedObjectContext
    
     var todo1 = ("initialize", "", "", "", "", "", "", 1, 1, 1, 1, 1, 1, 1)
     
@@ -16,24 +21,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        if todo1.9 == 1 {
-            expiringSoon.append(todo1)
-        } else {
-            notExpiringSoon.append(todo1)
-        }
-                
-        let algorithm1 = SortAlgorithm()
-        if expiringSoon.count > 0 {
-        expiringSoon = algorithm1.coke(A: expiringSoon)
-            expiringSoon = expiringSoon.filter({$0.0 != "initialize"})
+        if counter == 0 {
+            fetch()
+            expiringSoon = expiringSoonAlias
+            expiringSoonAlias = [("initialize_alias", "", "", "", "", "", "",1,1,1,1,1,1,1)]
         }
         
-        let algorithm2 = SortAlgorithm()
-        if notExpiringSoon.count > 0 {
-        notExpiringSoon = algorithm2.coke(A: notExpiringSoon)
-            notExpiringSoon = notExpiringSoon.filter({$0.0 != "initialize"})
+        counter = counter + 1
+        
+        if todo1.9 == 1 {
+            expiringSoon.append(todo1)
+            
+            let algorithm1 = SortAlgorithm()
+            
+            if expiringSoon.count > 0 {
+                expiringSoon = algorithm1.coke(A: expiringSoon)
+                expiringSoon = expiringSoon.filter({$0.0 != "initialize"})
+            }
+            if counter > 1 {
+                saveTodo()
+            }
         }
-
+        
+        if todo1.9 == 0 {
+            notExpiringSoon.append(todo1)
+            let algorithm2 = SortAlgorithm()
+            if notExpiringSoon.count > 0 {
+                notExpiringSoon = algorithm2.coke(A: notExpiringSoon)
+                notExpiringSoon = notExpiringSoon.filter({$0.0 != "initialize"})
+            }
+        }
+    
     }
     
     
@@ -138,6 +156,71 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-
+    
+    func fetch() {
+        
+        let todoFetch = NSFetchRequest<NSFetchRequestResult>(entityName:"SavedToDo")
+        
+        do {
+            let fetchedTodo = try moc.fetch(todoFetch) as! [SavedToDo]
+            
+            let addOne = ("initialize_alias+1", "", "", "", "", "", "",1,1,1,1,1,1,1)
+            
+            if fetchedTodo.count > 0 {
+                
+                for i in 0...fetchedTodo.count-1{
+                    expiringSoonAlias.append(addOne)
+                }
+                
+                for i in 0...(fetchedTodo.count-1) {
+                    expiringSoonAlias[i].0 = fetchedTodo[i].verb!
+                    expiringSoonAlias[i].1 = fetchedTodo[i].task!
+                    expiringSoonAlias[i].2 = fetchedTodo[i].category!
+                    expiringSoonAlias[i].3 = fetchedTodo[i].effort!
+                    expiringSoonAlias[i].4 = fetchedTodo[i].reward!
+                    expiringSoonAlias[i].5 = fetchedTodo[i].emotion!
+                    expiringSoonAlias[i].6 = fetchedTodo[i].expires!
+                    expiringSoonAlias[i].7 = fetchedTodo[i].verbNum
+                    expiringSoonAlias[i].8 = fetchedTodo[i].emotionNum
+                    expiringSoonAlias[i].9 = fetchedTodo[i].expiresNum
+                    expiringSoonAlias[i].10 = fetchedTodo[i].effortNum
+                    expiringSoonAlias[i].11 = fetchedTodo[i].rewardNum
+                    expiringSoonAlias[i].12 = fetchedTodo[i].categoryNum
+                    expiringSoonAlias[i].13 = fetchedTodo[i].sortNum
+                }
+            }
+            
+        } catch {
+            fatalError("bad things happened \(error)")
+        }
+        
+    }
+    
+    
+    func saveTodo() {
+        
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "SavedToDo", into: moc) as! SavedToDo
+        
+            entity.setValue(todo1.0, forKey: "verb")
+            entity.setValue(todo1.1, forKey: "task")
+            entity.setValue(todo1.2, forKey: "category")
+            entity.setValue(todo1.3, forKey: "effort")
+            entity.setValue(todo1.4, forKey: "reward")
+            entity.setValue(todo1.5, forKey: "emotion")
+            entity.setValue(todo1.6, forKey: "expires")
+            entity.setValue(todo1.7, forKey: "verbNum")
+            entity.setValue(todo1.8, forKey: "emotionNum")
+            entity.setValue(todo1.9, forKey: "expiresNum")
+            entity.setValue(todo1.10, forKey: "effortNum")
+            entity.setValue(todo1.11, forKey: "rewardNum")
+            entity.setValue(todo1.12, forKey: "categoryNum")
+            entity.setValue(todo1.13, forKey: "sortNum")
+        
+        do {
+            try moc.save()
+        } catch {
+            fatalError("failure to save context: \(error)")
+        }
+    }
 }
 
